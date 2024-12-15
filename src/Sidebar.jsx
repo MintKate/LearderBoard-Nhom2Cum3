@@ -52,8 +52,8 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </a>
             </li>
             <li className='sidebar-list-item'>
-                <Link to="/signin">
-                    <BsPersonCircle className='icon' /> Sign in
+                <Link to="/login">
+                    <BsPersonCircle className='icon' /> Login
                 </Link>
             </li>
 

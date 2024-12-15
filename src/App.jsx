@@ -4,7 +4,6 @@ import './App.css';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
-import Signin from './Signin'; // Import trang Signin
 import Loginform from './Components/LoginForm/Loginform';
 
 function App() {
@@ -23,7 +22,7 @@ function App() {
         {/* Sử dụng Routes để điều hướng */}
         <Routes>
           <Route path="/" element={<Home />} /> 
-          <Route path="/signin" element={<Loginform />} /> 
+          <Route path="/login" element={<Loginform />} /> 
         </Routes>
       </div>
     </Router>
