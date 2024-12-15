@@ -5,6 +5,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import Loginform from './Components/LoginForm/Loginform';
+import User from './Components/User/User'
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> 
           <Route path="/login" element={<Loginform />} /> 
+          <Route path="/user" element={<User  />} />
         </Routes>
       </div>
     </Router>

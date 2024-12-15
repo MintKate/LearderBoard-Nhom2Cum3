@@ -11,9 +11,17 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Gửi yêu cầu đến server
+
+    // Kiểm tra xem thông tin có trống hay không
+    if (!msv || !password) {
+      alert('MSV và Password không được để trống!');
+      return;
+    }
+
     try {
+      console.log('Gửi yêu cầu với thông tin:', { msv, password });
+
+      // Gửi yêu cầu đến API với URL đầy đủ
       const response = await fetch('https://serverleaderbroad.fly.dev/get_marks/', {
         method: 'POST',
         headers: {
@@ -22,16 +30,21 @@ const LoginForm = () => {
         body: JSON.stringify({ msv, password }),
       });
 
+      // Kiểm tra nếu response không thành công
       if (!response.ok) {
-        throw new Error('Đăng nhập thất bại, vui lòng kiểm tra lại thông tin.');
+        const errorData = await response.json();
+        console.error('Lỗi từ server:', errorData);
+        throw new Error(errorData.message || 'Đăng nhập thất bại, vui lòng kiểm tra lại thông tin.');
       }
 
+      // Lấy dữ liệu trả về từ server
       const data = await response.json();
+      console.log('Đăng nhập thành công:', data);
 
-      // Lưu thông tin vào localStorage (hoặc context/state)
+      // Lưu dữ liệu vào localStorage
       localStorage.setItem('userData', JSON.stringify(data));
 
-      // Chuyển sang trang user
+      // Chuyển hướng đến trang user
       navigate('/user');
     } catch (error) {
       console.error('Lỗi khi đăng nhập:', error.message);
